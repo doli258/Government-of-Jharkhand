@@ -1,46 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="/">Govt. of Jharkhand</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body>
+  <nav>
+    <!-- ✅ Logo -->
+    <img src="./jharkhand.png" alt="Jharkhand Govt Logo">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link " href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/services">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
+    <!-- ✅ Menu -->
+    <ul class="menu">
+      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="#"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+      <li><a href="#"><i class="fas fa-user"></i> Login / SignUp</a></li>
+    </ul>
 
-        <% if(!currentUser) { %>
-          <li class="nav-item">
-            <a class="nav-link " href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/register">Register</a>
-          </li>
-        <% } else { %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="fa fa-user"></i> <%= currentUser.name %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-              <li><a class="dropdown-item" href="/profile">Profile</a></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </li>
-        <% } %>
-      </ul>
+    <!-- ✅ Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
     </div>
+  </nav>
+
+  <!-- ✅ Content -->
+  <div class="content">
+    <h1></h1>
+    
+  
   </div>
-</nav>
+
+<script src="./index.js"></script>
+</body>
+

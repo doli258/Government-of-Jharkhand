@@ -25,6 +25,8 @@ app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
+//serving static file
+app.use(express.static("public"));
 
 // Express session
 app.use(session({
