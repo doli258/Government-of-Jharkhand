@@ -9,6 +9,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+router.get("/", (req, res) => res.render("index"));
 // Register Page
 router.get("/register", (req, res) => res.render("register"));
 
@@ -23,14 +24,8 @@ router.post("/register", async (req, res) => {
     res.redirect("/login");
   } catch (err) {
     console.error(err);
-    errors.push({ msg: "An error occurred during registration" });
-    res.render("register", {
-      errors,
-      name,
-      email,
-      password,
-      username
-    });
+    req.flash("error", err.message);
+    res.redirect("/register");
   }
   
 });
@@ -44,7 +39,8 @@ router.post("/login", (req, res, next) => {
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
-  })(req, res, next);
+  })
+  (req, res, next);
 });
 
 // Logout

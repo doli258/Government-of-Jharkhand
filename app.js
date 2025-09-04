@@ -40,6 +40,12 @@ app.use(passport.session());
 
 // Flash
 app.use(flash());
+// app.use((req, res, next) => {
+//    res.locals.success = req.flash('success');
+//    res.locals.error = req.flash('error');
+//    res.locals.user = req.user; // Make user available in all views
+//    next();
+// });
 
 // Global Vars for flash messages
 app.use((req, res, next) => {
@@ -49,7 +55,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => res.render("index"));
+// app.get("/", (req, res) => res.render("index"));
 
 // Routes
 app.use("/", require("./routes/auth"));
