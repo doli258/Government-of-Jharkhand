@@ -95,3 +95,50 @@
       padding-top: 90px;
     }
   
+
+
+    .footer {
+  background-color: #2F4F4F; /* Dark formal background */
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.footer-logo h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #E0E9D8; /* Match navbar color */
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #E0E9D8; /* Navbar theme color */
+}
+
+.footer-info p {
+  font-size: 14px;
+  opacity: 0.8;
+}
