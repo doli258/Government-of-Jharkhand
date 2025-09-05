@@ -1,12 +1,10 @@
 <% layout('layouts/boilerplate') %>
-
 <% if (success && success.length > 0) { %>
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     <%= success %>
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 <% } %>
-
 <% if (error && error.length > 0) { %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <%= error %>
@@ -15,7 +13,11 @@
 <% } %>
 </div>
 <body>
-  
-       
-        
+  <h1>Welcome, <%= currentUser.name %>!</h1>
+  <p>This is your dashboard.</p>
+  <!-- Add more user-specific content here -->
+    <a href="/logout" class="btn btn-primary">Logout</a>
+    <a href="/profile" class="btn btn-secondary">Profile</a>
+    <a href="/settings" class="btn btn-secondary">Settings</a>
+    <a href="/support" class="btn btn-secondary">Support</a>
 </body>

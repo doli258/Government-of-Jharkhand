@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const Issue = require("../models/Issue");
-const { ensureAuthenticated } = require("../utils/authGuard");
+const  ensureAuthenticated  = require("../utils/authGuard");
 
 const upload = multer({ dest: "uploads/" });
 
