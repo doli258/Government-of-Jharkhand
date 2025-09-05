@@ -7,6 +7,8 @@ const passport = require("passport");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const path = require("path");
+const complaintRoutes = require("./routes/complaintRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
@@ -27,7 +29,7 @@ app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 //serving static file
 app.use(express.static("public"));
-
+app.use("/uploads", express.static("uploads"));
 // Express session
 app.use(session({
   secret: "sihsecret",
@@ -42,12 +44,7 @@ app.use(passport.session());
 
 // Flash
 app.use(flash());
-// app.use((req, res, next) => {
-//    res.locals.success = req.flash('success');
-//    res.locals.error = req.flash('error');
-//    res.locals.user = req.user; // Make user available in all views
-//    next();
-// });
+
 
 // Global Vars for flash messages
 app.use((req, res, next) => {
@@ -60,8 +57,12 @@ app.use((req, res, next) => {
 // app.get("/", (req, res) => res.render("index"));
 
 // Routes
+
 app.use("/", require("./routes/auth"));
-app.use("/issues", require("./routes/issues"));
+app.use("/complaints", complaintRoutes);
+app.use("/dashboard", dashboardRoutes);
+
+
 
 // Server
 const PORT = process.env.PORT || 3000;

@@ -14,6 +14,8 @@ router.get("/", (req, res) => res.render("index"));
 // Register Page
 router.get("/register", (req, res) => res.render("register"));
 
+
+
 // Register Handle
 router.post("/register", async (req, res) => {
   const { name, email, password, username, date, district, pincode, mobile, address } = req.body;
@@ -51,9 +53,10 @@ router.get("/logout", (req, res) => {
   });
 });
 
-// User Dashboard Route
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  res.render("userDashboard", { user: req.user });
-});
+
+
+
+
+
 
 module.exports = router;

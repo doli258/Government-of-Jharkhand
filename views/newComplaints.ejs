@@ -1,0 +1,132 @@
+<% layout('layouts/boilerplate') %>
+<style>
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  .btn-outline-primary {
+    margin-top: 5px;
+  }
+  .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+  .btn {
+    min-width: 150px;
+  }
+  .form-control, .form-select {
+    border-radius: 0.375rem;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  .invalid-feedback {
+    display: none;
+    color: red;
+  }
+  .was-validated .form-control:invalid ~ .invalid-feedback,
+  .was-validated .form-select:invalid ~ .invalid-feedback {
+    display: block;
+  }
+  
+
+</style>
+  <body>
+    <div class="container mt-4">
+      <h2 class="mb-4">Register a New Complaint</h2>
+
+      <form action="/complaints" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+        <!-- Complaint Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Complaint Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="e.g., Pothole on main road"
+            required>
+          <div class="invalid-feedback">Please enter a title.</div>
+        </div>
+
+        <!-- Complaint Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="4"
+            placeholder="Describe the issue in detail" required></textarea>
+          <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+
+        <!-- Category Dropdown -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select" id="category" name="category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="Sanitation">Sanitation (Garbage, Cleaning)</option>
+            <option value="Roads">Roads (Potholes, Damage)</option>
+            <option value="Electricity">Electricity (Streetlights, Power Issues)</option>
+            <option value="Water">Water Supply & Drainage</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="invalid-feedback">Please select a category.</div>
+        </div>
+
+        <!-- File Upload -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Image (Optional)</label>
+          <input class="form-control" type="file" id="image" name="image" accept="image/*">
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control mb-2" id="address" name="address"
+            placeholder="Enter address (optional)">
+          <input type="hidden" id="latitude" name="latitude">
+          <input type="hidden" id="longitude" name="longitude">
+          <button type="button" class="btn btn-sm btn-outline-primary" onclick="getLocation()">📍 Use My
+            Location</button>
+          <small class="form-text text-muted">Allow location access to auto-fill coordinates.</small>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-paper-plane"></i> Submit Complaint
+        </button>
+      </form>
+    </div>
+
+    <script>
+      // Get Geolocation
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              document.getElementById("latitude").value = position.coords.latitude;
+              document.getElementById("longitude").value = position.coords.longitude;
+              alert("Location captured successfully!");
+            },
+            function (error) {
+              alert("Error fetching location. Please enter manually.");
+            }
+          );
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      // Bootstrap validation
+      (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>
+
+  </body>

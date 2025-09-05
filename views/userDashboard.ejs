@@ -1,23 +1,119 @@
 <% layout('layouts/boilerplate') %>
-<% if (success && success.length > 0) { %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+<style>
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    
+  }
+
+  .table th, .table td {
+    vertical-align: middle;
+
+  }
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+  }
+  .totalComplaints {
+    background-image: linear-gradient(to top, #FEB47B , #FF7E5F80 );
+  }
+  .pendingComplaints {
+    background-image: linear-gradient(to bottom, #89F7FE , #66A6FF );
+  }
+  .resolvedComplaints {
+    background-image: linear-gradient(to top, #43E97B , #38F9D7 );
+  }
+  .btn {
+    min-width: 200px;
+  }
+  .alert {
+    border-radius: 10px;
+  }
+  .badge {
+    font-size: 1rem;
+  }
+
+</style>
+<div class="container mt-4">
+  <!-- Flash Messages -->
+  <% if (success && success.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+
+  <!-- Welcome -->
+  <h2 class="mb-3">Welcome, <%= user.name %> 👋</h2>
+
+  <!-- Stats -->
+  <div class="row text-center mb-4 g-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 bg-light text-dark totalComplaints">
+        <h4>Total Complaints</h4>
+        <h2><%= totalComplaints %></h2>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 bg-warning text-dark pendingComplaints">
+        <h4>Pending</h4>
+        <h2><%= pendingComplaints %></h2>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 bg-success text-white resolvedComplaints">
+        <h4>Resolved</h4>
+        <h2><%= resolvedComplaints %></h2>
+      </div>
+    </div>
   </div>
-<% } %>
-<% if (error && error.length > 0) { %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= error %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-<% } %>
+  <a href="/complaints/new" class="btn btn-primary mb-4">➕ Register New Complaint</a>
+  <!-- Complaints Table -->
+  <h4>Your Complaints</h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% complaints.forEach(c => { %>
+        <tr>
+          <td><%= c.title %></td>
+          <td><%= c.category %></td>
+          <td>
+            <% if (c.status === "Pending") { %>
+              <span class="badge bg-warning">Pending</span>
+            <% } else { %>
+              <span class="badge bg-success">Resolved</span>
+            <% } %>
+          </td>
+          <td><%= c.createdAt.toDateString() %></td>
+          <td>
+            <a href="/complaints/<%= c._id %>" class="btn btn-sm btn-primary">Details</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>
-<body>
-  <h1>Welcome, <%= currentUser.name %>!</h1>
-  <p>This is your dashboard.</p>
-  <!-- Add more user-specific content here -->
-    <a href="/logout" class="btn btn-primary">Logout</a>
-    <a href="/profile" class="btn btn-secondary">Profile</a>
-    <a href="/settings" class="btn btn-secondary">Settings</a>
-    <a href="/support" class="btn btn-secondary">Support</a>
-</body>
