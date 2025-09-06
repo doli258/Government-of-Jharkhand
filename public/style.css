@@ -180,12 +180,14 @@ form select {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   gap: 20px;
 }
 
 .footer-section {
+  flex: 1 1 200px; /* minimum width 200px */
   text-align: center;
 }
 
@@ -254,15 +256,21 @@ form select {
   margin-top: 10px;
 }
 
-/* 📱 Responsive Design */
+/* 📱 Mobile Responsive Design */
 @media (max-width: 768px) {
-  .footer {
-    padding: 20px 15px;
+  .footer-container {
+    flex-direction: column;   /* ✅ Force single column */
+    align-items: center;
   }
 
-  .footer-container {
-    grid-template-columns: 1fr 1fr; /* 2 equal columns */
-    gap: 15px;
+  .footer-section {
+    flex: 1 1 100%;           /* Full width */
+    margin-bottom: 15px;
+  }
+
+  .footer-logo {
+    height: 70px;
+    width: 140px;
   }
 
   .footer-section h3 {
@@ -273,19 +281,9 @@ form select {
     font-size: 13px;
   }
 
-  .footer-logo {
-    height: 70px;
-    width: 140px;
-  }
-
   .footer-bottom {
     font-size: 12px;
   }
 }
 
-@media (max-width: 480px) {
-  .footer-container {
-    grid-template-columns: 1fr; /* Single column for very small screens */
-  }
-}
 
