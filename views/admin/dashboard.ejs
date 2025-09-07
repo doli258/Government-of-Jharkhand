@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-4">
+  <h3>Admin Dashboard</h3>
+  <hr>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% complaints.forEach(c => { %>
+        <tr>
+          <td><%= c.title %></td>
+          <td><%= c.user ? c.user.name : "Anonymous" %></td>
+          <td><%= c.status %></td>
+          <td><%= c.createdAt.toDateString() %></td>
+          <td>
+            <a href="/complaints/<%= c._id %>" class="btn btn-sm btn-info">View</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <a href="/admin/logout" class="btn btn-danger">Logout</a>
+</div>
