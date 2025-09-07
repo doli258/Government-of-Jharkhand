@@ -169,6 +169,8 @@ form select {
 
 
 
+
+
 .footer {
   background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
     url('./Tourism1111.jpg') no-repeat center center/cover;
@@ -231,31 +233,22 @@ form select {
   color: #00ff99;
 }
 
-
 .social-icons {
   display: flex;
-  flex-direction: column;  /* icons+text stack vertically (each row) */
-  align-items: flex-start; /* left align, ya center bhi kar sakte ho */
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
 }
 
 .social-icons a {
-  display: inline-flex;      /* ✅ keeps icon & text in one line */
-  align-items: center;       /* vertically center align */
-  gap: 8px;                  /* space between icon and text */
-  font-size: 14px;           /* text size */
-  color: #fff;
+  font-size: 18px;
   text-decoration: none;
+  color: #fff;
   transition: 0.3s;
 }
 
 .social-icons a:hover {
   opacity: 0.7;
 }
-
-
-
-
 
 .footer hr {
   margin: 15px 0;
