@@ -234,8 +234,9 @@ form select {
 }
 
 .social-icons {
-  display: flex;
+  
   justify-content: center;
+  display: inline-block;
   gap: 12px;
 }
 
