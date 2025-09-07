@@ -190,6 +190,10 @@ form select {
   flex: 1 1 200px; /* minimum width 200px */
   text-align: center;
 }
+.footer-r{
+  display: flex;
+  flex-direction: column;
+}
 
 .footer-logo {
   height: 80px;
@@ -227,22 +231,31 @@ form select {
   color: #00ff99;
 }
 
+
 .social-icons {
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  flex-direction: column;  /* icons+text stack vertically (each row) */
+  align-items: flex-start; /* left align, ya center bhi kar sakte ho */
+  gap: 10px;
 }
 
 .social-icons a {
-  font-size: 18px;
-  text-decoration: none;
+  display: inline-flex;      /* ✅ keeps icon & text in one line */
+  align-items: center;       /* vertically center align */
+  gap: 8px;                  /* space between icon and text */
+  font-size: 14px;           /* text size */
   color: #fff;
+  text-decoration: none;
   transition: 0.3s;
 }
 
 .social-icons a:hover {
   opacity: 0.7;
 }
+
+
+
+
 
 .footer hr {
   margin: 15px 0;
@@ -262,10 +275,14 @@ form select {
     flex-direction: column;   /* ✅ Force single column */
     align-items: center;
   }
+  .footer-r{
+    flex-direction: row;
 
+  }
   .footer-section {
     flex: 1 1 100%;           /* Full width */
     margin-bottom: 15px;
+    text-align: start;
   }
 
   .footer-logo {
