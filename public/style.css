@@ -247,7 +247,7 @@ form select {
 .social-icons a:hover {
   op.social-icons a {
   display: inline-flex;   /* ✅ icon + text ek line me */
-  align-items: center;    /* ✅ vertically center align */
+   /* ✅ vertically center align */
   gap: 8px;               /* icon aur text ke beech thoda space */
   font-size: 14px;
   color: #fff;
