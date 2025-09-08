@@ -22,15 +22,33 @@
 
   }
   .card {
+    display: flex;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 300px;
+    height: 200px;
+    text-align: center;
+    font-size: medium;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    gap: 15px;
+    h4, h2 {
+      color: white;
+
+    }
+    
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   }
   .totalComplaints {
     background-image: linear-gradient(to top, #FEB47B , #FF7E5F80 );
   }
   .pendingComplaints {
     background-image: linear-gradient(to bottom, #66A6FF , #89F7FE );
+    
   }
   .resolvedComplaints {
     background-image: linear-gradient(to top, #38EF7D , #11998E );
@@ -76,20 +94,35 @@
   <div class="row text-center mb-4 g-4">
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-light text-dark totalComplaints">
-        <h4>Total Grievance Registered</h4>
-        <h2><%= totalComplaints %></h2>
+        <div class="card-img">
+          <img src="complain.png" alt="total" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Total Complaints Registered</h4>
+          <h2><%= totalComplaints %></h2>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-warning text-dark pendingComplaints">
-        <h4>Number of grievances pending</h4>
-        <h2><%= pendingComplaints %></h2>
+        <div class="card-img">
+          <img src="pending-d.png" alt="pending" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Number of grievance pending</h4>
+          <h2><%= pendingComplaints %></h2>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-success text-white resolvedComplaints">
-        <h4>Number of grievance closed</h4>
-        <h2><%= resolvedComplaints %></h2>
+        <div class="card-img">
+          <img src="close-d.png" alt="resolved" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Number of grievance resolved</h4>
+          <h2><%= resolvedComplaints %></h2>
+        </div>
       </div>
     </div>
   </div>

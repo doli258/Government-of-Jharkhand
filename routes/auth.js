@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
     // ✅ Send Welcome Email
     await sendEmail(
       email,
-      "🎉 Welcome to Grievance Portal",
+      "🎉 Welcome to Civic साथी",
       `Hello ${name},\n\nYour account has been successfully created. You can now log in using your credentials.\nYour Username: ${username} and Password: ${password}.\n\nRegards,\nGrievance Portal Team`
     );
 

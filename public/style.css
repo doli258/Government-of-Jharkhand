@@ -33,7 +33,13 @@ nav {
   box-sizing: border-box;
   /* ✅ ensures padding not cutting width */
 }
-
+.logo-para {
+  display: none;
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 18px;
+}
 /* ✅ Fixed logo size */
 nav img {
   width: 134px;
@@ -98,7 +104,13 @@ nav img {
     opacity: 1;
     transform: translateX(0);
   }
-
+  .logo-para {
+    display: block;
+    font-size: 12px;
+  text-align: center;
+  color: #333;
+  font-weight: 500;
+}
   /* ✅ Hamburger visible on mobile */
   .hamburger {
     display: block;
