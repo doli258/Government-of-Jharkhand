@@ -277,7 +277,6 @@ form select {
   }
   .footer-r{
     flex-direction: row;
-
   }
   .footer-section {
     flex: 1 1 100%;           /* Full width */
