@@ -263,6 +263,7 @@ form select {
   transition: 0.3s;
   white-space: nowrap;
   gap: 8px;
+  
 }
 
 .social-icons a:hover {
