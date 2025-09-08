@@ -1,7 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <style>
   .container {
-    max-width: 900px;
     margin: auto;
     padding-bottom: 20px;
   }
@@ -10,6 +9,11 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     width: 100%;
+    background-color: #fff;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 30px;
     
   }
 
@@ -18,18 +22,36 @@
 
   }
   .card {
+    display: flex;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 90%;
+    height: 200px;
+    text-align: center;
+    font-size: medium;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    gap: 15px;
+    h4, h2 {
+      color: white;
+
+    }
+    
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   }
   .totalComplaints {
     background-image: linear-gradient(to top, #FEB47B , #FF7E5F80 );
   }
   .pendingComplaints {
-    background-image: linear-gradient(to bottom, #89F7FE , #66A6FF );
+    background-image: linear-gradient(to bottom, #66A6FF , #89F7FE );
+    
   }
   .resolvedComplaints {
-    background-image: linear-gradient(to top, #43E97B , #38F9D7 );
+    background-image: linear-gradient(to top, #38EF7D , #11998E );
   }
   .btn {
     min-width: 200px;
@@ -40,6 +62,13 @@
   .badge {
     font-size: 1rem;
   }
+  @media (max-width: 768px) {
+    .table, .card {
+      width: 100%;
+    }
+  
+  }
+
 
 </style>
 <div class="container mt-4">
@@ -65,20 +94,35 @@
   <div class="row text-center mb-4 g-4">
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-light text-dark totalComplaints">
-        <h4>Total Complaints</h4>
-        <h2><%= totalComplaints %></h2>
+        <div class="card-img">
+          <img src="complain.png" alt="total" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Total Complaints Registered</h4>
+          <h2><%= totalComplaints %></h2>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-warning text-dark pendingComplaints">
-        <h4>Pending</h4>
-        <h2><%= pendingComplaints %></h2>
+        <div class="card-img">
+          <img src="pending-d.png" alt="pending" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Number of grievance pending</h4>
+          <h2><%= pendingComplaints %></h2>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card shadow-sm p-3 bg-success text-white resolvedComplaints">
-        <h4>Resolved</h4>
-        <h2><%= resolvedComplaints %></h2>
+        <div class="card-img">
+          <img src="close-d.png" alt="resolved" height="70px" width="65px">
+        </div>
+        <div class="card-content">
+          <h4>Number of grievance resolved</h4>
+          <h2><%= resolvedComplaints %></h2>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-4">
+  <h3>Sanitation Department Dashboard</h3>
+  <hr>
+
+  <% if (complaints.length === 0) { %>
+    <div class="alert alert-info">No complaints found for this department.</div>
+  <% } else { %>
+    <table class="table table-striped table-bordered mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>User</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% complaints.forEach(complaint => { %>
+          <tr>
+            <td><%= complaint.title %></td>
+            <td><%= complaint.description.substring(0, 50) %>...</td>
+            <td><%= complaint.user ? complaint.user.name : "N/A" %></td>
+            <td>
+              <% if (complaint.status === "Pending") { %>
+                <span class="badge bg-warning text-dark">Pending</span>
+              <% } else { %>
+                <span class="badge bg-success">Resolved</span>
+              <% } %>
+            </td>
+            <td><%= complaint.createdAt.toDateString() %></td>
+            <td>
+              <a href="/complaints/<%= complaint._id %>" class="btn btn-sm btn-primary">View</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <a href="/admin/logout" class="btn btn-danger mt-3">Logout</a>
+</div>

@@ -40,43 +40,51 @@
       <% } %>
 
         <!-- Map Preview with Leaflet -->
-        <% if (complaint.latitude && complaint.longitude) { %>
-          <div class="mt-4">
-            <h5>Location:</h5>
-            <div id="map" style="height:300px; border-radius:10px;"></div>
-            <div class="mt-3">
+       <% if (complaint.latitude && complaint.longitude) { %>
+  <div class="mt-4">
+    <h5>Location:</h5>
+    <div id="map" style="height:300px; border-radius:10px;"></div>
+
+    <!-- Show Lat/Lng values with Copy + Google Maps links -->
+    <div class="mt-3">
       <p>
-        <strong>Latitude:</strong> <%= complaint.latitude %> 
-        <button class="btn btn-sm btn-outline-primary" onclick="copyToClipboard('<%= complaint.latitude %>')">Copy</button>
-        &nbsp;&nbsp;
-        <strong>Longitude:</strong> <%= complaint.longitude %> 
-        <button class="btn btn-sm btn-outline-primary" onclick="copyToClipboard('<%= complaint.longitude %>')">Copy</button>
+        <strong>Latitude:</strong> 
+        <%= complaint.latitude %> 
+        <a href="https://www.google.com/maps?q=<%= complaint.latitude %>,<%= complaint.longitude %>" 
+           target="_blank" 
+           class="btn btn-sm btn-outline-success">Open in Maps</a>
+        <button class="btn btn-sm btn-outline-primary" 
+                onclick="copyToClipboard('<%= complaint.latitude %>')">Copy</button>
+      </p>
+
+      <p>
+        <strong>Longitude:</strong> 
+        <%= complaint.longitude %> 
+        <a href="https://www.google.com/maps?q=<%= complaint.latitude %>,<%= complaint.longitude %>" 
+           target="_blank" 
+           class="btn btn-sm btn-outline-success">Open in Maps</a>
+        <button class="btn btn-sm btn-outline-primary" 
+                onclick="copyToClipboard('<%= complaint.longitude %>')">Copy</button>
       </p>
     </div>
-          </div>
-
-          <% } %>
-
-            <div class="mt-4">
-              <a href="/dashboard" class="btn btn-secondary">⬅ Back to Dashboard</a>
-            </div>
   </div>
+<% } %>
+<a href="/dashboard"><button class="btn btn-sm btn-success">Back to Dashboard</button></a>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <script>
+<script>
   <% if (complaint.latitude && complaint.longitude) { %>
     const map = L.map('map').setView([<%= complaint.latitude %>, <%= complaint.longitude %>], 15);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-      L.marker([<%= complaint.latitude %>, <%= complaint.longitude %>]).addTo(map)
-        .bindPopup("<b><%= complaint.title %></b>").openPopup();
+    L.marker([<%= complaint.latitude %>, <%= complaint.longitude %>]).addTo(map)
+      .bindPopup("<b><%= complaint.title %></b>").openPopup();
   <% } %>
+
   // Copy function
   function copyToClipboard(value) {
     navigator.clipboard.writeText(value).then(() => {
@@ -85,4 +93,4 @@
       console.error("Failed to copy: ", err);
     });
   }
-  </script>
+</script>

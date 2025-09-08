@@ -10,6 +10,8 @@ const path = require("path");
 const complaintRoutes = require("./routes/complaintRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
+
+
 const app = express();
 
 // DB Connection

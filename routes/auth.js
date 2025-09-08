@@ -5,6 +5,7 @@ const passport = require("passport");
 const User = require("../models/User");
 const LocalStrategy = require('passport-local').Strategy;
 const  ensureAuthenticated  = require("../utils/authGuard");
+const sendEmail = require("../utils/sendEmail");
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -23,7 +24,15 @@ router.post("/register", async (req, res) => {
   try {
     const newUser = new User({ name, email, username, date, district, pincode, mobile, address });
     await User.register(newUser, password);
-    req.flash("success", "You are now registered and can log in");
+
+    // ✅ Send Welcome Email
+    await sendEmail(
+      email,
+      "🎉 Welcome to Civic साथी",
+      `Hello ${name},\n\nYour account has been successfully created. You can now log in using your credentials.\nYour Username: ${username} and Password: ${password}.\n\nRegards,\nGrievance Portal Team`
+    );
+
+    req.flash("success", "You are now registered. A confirmation email has been sent.");
     res.redirect("/login");
   } catch (err) {
     console.error(err);

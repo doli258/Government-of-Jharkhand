@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const ensureAuthenticated = require("../utils/authGuard");
 const mongoose = require("mongoose");
+const complaintEmail  = require("../utils/sendEmail");
 
 // Protect middleware
 function isLoggedIn(req, res, next) {
@@ -46,6 +47,12 @@ router.post("/", ensureAuthenticated, upload.single("image"), async (req, res) =
     });
 
     await newComplaint.save();
+    // ✅ Send Complaint Submission Email to User
+    await complaintEmail(
+      req.user.email,
+      "📢 Complaint Submitted Successfully",
+      `Hello ${req.user.name},\n\nYour complaint titled "${title}" has been successfully submitted. We will review it and get back to you shortly.\n complaint id: ${newComplaint._id} \n\nRegards,\n Civic साथी Team`
+    );
 
     req.flash("success", "Complaint submitted successfully!");
     res.redirect("/dashboard");
